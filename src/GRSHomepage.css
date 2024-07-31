@@ -1,0 +1,22 @@
+.homepage {
+    padding: 70px 0;
+    text-align: center;
+}
+
+.homepage-header {
+    background-color: white;
+    color: black;
+    padding: 20px;
+}
+
+img{
+    text-align: center;
+}
+
+
+body{
+    background-image: url('./assets/banner3.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+  }
