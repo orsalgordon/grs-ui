@@ -6,11 +6,17 @@ import { CiBoxList } from "react-icons/ci";
 function GRSHomepage() {
 
    const navigator = useNavigate();
+   const grsId = window.localStorage.getItem("grsId");
 
    function redirect() {
       navigator('/event');
    }
 
+   function isLogin() {
+      if (grsId) {
+         return <button type="button" className="btn-1" onClick={redirect}><CiBoxList /> See event list</button>;
+      }
+   }
    return (
       <>
          <div className="homepage">
@@ -19,8 +25,9 @@ function GRSHomepage() {
                   <h2>Welcome to Gift Registry!</h2>
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                </section>
-
-               <button type="button" className="btn-1" onClick={redirect}><CiBoxList /> See event list</button>
+               {
+                  isLogin()
+               }
             </main>
 
          </div>

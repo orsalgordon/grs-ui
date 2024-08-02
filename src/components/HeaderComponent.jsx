@@ -1,15 +1,14 @@
 import logo from '../assets/logo.jpg'
 import React, { useEffect, useState } from 'react'
 import { hostDetails } from '../services/HostService'
-import { useCookies } from 'react-cookie'
 import { useNavigate } from 'react-router-dom'
 
 const HeaderComponent = () => {
 
   const [host, setHost] = useState([])
   const navigator = useNavigate();
-  const [cookies, removeCookies] = useCookies(['grsId']);
-  const grsId = cookies.grsId;
+  const grsId = window.localStorage.getItem("grsId");
+  
 
   useEffect(() => {
 
@@ -31,7 +30,7 @@ const HeaderComponent = () => {
   }
 
   function logout() {
-    removeCookies('grsId');
+    window.localStorage.removeItem("grsId");
     navigator('/');
   }
 

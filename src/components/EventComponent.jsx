@@ -9,8 +9,7 @@ const EventComponent = () => {
   const [eventName, setEventName] = useState('');
   const [eventDescription, setEventDescription] = useState('');
   const [eventType, setEventType] = useState(null);
-  const [cookies, removeCookies] = useCookies(['grsId']);
-  const grsId = cookies.grsId;
+  const grsId = window.localStorage.getItem("grsId");
   const hostId = grsId;
   const navigator = useNavigate();
   const { eventId } = useParams();
