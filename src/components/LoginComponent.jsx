@@ -41,8 +41,8 @@ const LoginComponent = () => {
       <div className='row'>
         <div className='card-body'>
           <div className='card-body'>
-            <h2>Sign in</h2>
-            <form className="form-box">
+            <h2>Sign in to GRS</h2>
+            <form className="form-box" onSubmit={login}>
               <div className='input-box'>
                 <input
                   type='text'
@@ -66,9 +66,12 @@ const LoginComponent = () => {
               </div>
 
               <div>
-                <button type="button" onClick={login}>Submit</button>
+                <button type="submit" onClick={login}>Log In</button>
               </div>
-              <p>Don't have account? <a onClick={redirect}>Register</a></p>
+              <br/>
+              <div className='register'>
+              <p>Don't have account? <u><a onClick={redirect}>Register</a></u></p>
+              </div>
 
 
             </form>

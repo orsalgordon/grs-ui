@@ -7,16 +7,17 @@ const GiftComponent = () => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [link, setLink] = useState('');
+    const [available, setAvailable] = useState('');
     const navigator = useNavigate();
     const { giftId, eventId } = useParams();
   
     useEffect(() => {
-  
       if (giftId) {
         fetchGift(giftId).then((response) => {
           setName(response.data.name);
           setDescription(response.data.description);
           setLink(response.data.link);
+          setAvailable(response.data.available ? 'true' : 'false');
         }).catch((error) => {
           console.error('Error fetching gift:', error);
         });
@@ -26,7 +27,7 @@ const GiftComponent = () => {
     function saveGift(e) {
       e.preventDefault();
   
-      const gift = { name, description, link, eventId };
+      const gift = { name, description, link, eventId, available };
       console.log('GIFT - ' + gift);
   
       if (giftId) {
@@ -39,7 +40,6 @@ const GiftComponent = () => {
         return;
       } else {
         createGift(gift).then((response) => {
-          console.log(response.data);
           console.log('Create success');
           navigator(`/event/${eventId}/gifts`);
         }).catch((error) => {
@@ -103,8 +103,25 @@ const GiftComponent = () => {
               ></input>
             </div>
 
-            <button type="button" onClick={saveGift}>Submit</button>
+            <div className='form-group mb-2'>
+              <label className='form-label'>Available: </label>
+              <input
+                type='radio'
+                name='available'
+                value='true'
+                checked={available === 'true'}
+                onChange={(e) => setAvailable(e.target.value)}
+              ></input>Yes
+              <input
+                type='radio'
+                name='available'
+                value='false'
+                checked={available === 'false'}
+                onChange={(e) => setAvailable(e.target.value)}
+              ></input>No
+            </div>
 
+            <button type="button" onClick={saveGift}>Submit</button>
           </form>
         </div>
       </div>

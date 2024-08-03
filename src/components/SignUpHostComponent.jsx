@@ -26,18 +26,14 @@ const SignUpHostComponent = () => {
   
     }
   
-    function redirect() {
-        navigator('/');
-    }
-  
     return (
       
       <div className='form-container-1'>
     <div className='row-1'>
         <div className='card-body'>
           <div className='card-body'>
-            <h2>Create account</h2>
-            <form className="form-box">
+            <h2>Create new account</h2>
+            <form className="form-box" onSubmit={submit}>
             <div className='input-box'>
                 <label>First name: </label>
                 <input
@@ -86,7 +82,7 @@ const SignUpHostComponent = () => {
                 ></input>
               </div>
   
-              <button type="button" onClick={submit}>Submit</button>
+              <button type="submit" onClick={submit}>Sign up</button>
   
             </form>
           </div>

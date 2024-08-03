@@ -1,14 +1,20 @@
 import logo from '../assets/logo.jpg'
 import React, { useEffect, useState } from 'react'
 import { hostDetails } from '../services/HostService'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 const HeaderComponent = () => {
 
   const [host, setHost] = useState([])
   const navigator = useNavigate();
   const grsId = window.localStorage.getItem("grsId");
-  
+  let query = useQuery();
+  let keyParam = query.get('key');
+
 
   useEffect(() => {
 
@@ -44,6 +50,8 @@ const HeaderComponent = () => {
             <button type="button" class="btn btn-lite" onClick={login}>login</button>
           </a>
         </div>);
+    } else if (keyParam) {
+      return '';
     } else {
       return (
         <a>

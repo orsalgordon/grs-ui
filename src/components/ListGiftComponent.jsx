@@ -55,6 +55,7 @@ const ListGiftComponent = () => {
                         <th>Name</th>
                         <th>Description</th>
                         <th>Link</th>
+                        <th>Already Bought?</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -65,8 +66,9 @@ const ListGiftComponent = () => {
                                 <td>{gift.name}</td>
                                 <td>{gift.description}</td>
                                 <td>{gift.link}</td>
+                                <td>{gift.available ? "No" : "Yes"}</td>
                                 <td>
-                                    <button className='btn-1' onClick={() => updateGift(eventId, gift.giftId)}><CiEdit /> Update</button>
+                                    <button className='btn-1' onClick={() => updateGift(eventId, gift.giftId)}><CiEdit /> Edit</button>
                                     <button className='btn-1' onClick={() => removeGift(gift.giftId)}><MdDeleteOutline /> Delete</button>
                                 </td>
                             </tr>)

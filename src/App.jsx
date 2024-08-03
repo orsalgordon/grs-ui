@@ -12,6 +12,7 @@ import LoginComponent from './components/LoginComponent'
 import HostDetailsComponent from './components/HostDetailsComponent'
 import FooterComponent from './components/FooterComponent'
 import ProtectedRoute from './components/ProtectedRoute'
+import GuestGiftListComponent from './components/GuestGiftListComponent'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
           <Route path='/' element={<GRSHomepage />}></Route>
           <Route path='/sign-up' element={<SignUpHostComponent />}></Route>
           <Route path='/login' element={<LoginComponent />}></Route>
+          <Route path='/event/:eventId/public' element={<GuestGiftListComponent />}></Route>
           <Route element={<ProtectedRoute />}>
             <Route path='/profile' element={<HostDetailsComponent />}></Route>
             <Route path='/event' element={<ListEventComponent />}></Route>

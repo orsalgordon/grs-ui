@@ -55,3 +55,11 @@ form button {
     translate: 0 -50%;
     font-size: 16px;
 }
+
+.register {
+    cursor: pointer;
+}
+
+u {
+    color: blue;
+}

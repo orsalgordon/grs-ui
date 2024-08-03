@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { eventList, deleteEvent } from '../services/EventService'
 import { useNavigate } from 'react-router-dom'
 import { GoGift } from "react-icons/go";
@@ -9,13 +9,11 @@ import { IoArrowBack } from "react-icons/io5";
 import { CiLink } from "react-icons/ci";
 import './ListEventComponent.css'
 
-
 const ListEventComponent = () => {
 
     const [events, setEvents] = useState([])
     const navigator = useNavigate();
     const grsId = window.localStorage.getItem("grsId");
-
     useEffect(() => {
         fetchEvents();
     }, [])
@@ -23,7 +21,6 @@ const ListEventComponent = () => {
     function fetchEvents() {
         eventList(grsId).then((response) => {
             setEvents(response.data)
-            console.log(response.data);
         }).catch(error => {
             console.error(error);
         })
@@ -54,11 +51,13 @@ const ListEventComponent = () => {
     }
 
     function shareLink(id) {
-        const link = "https://localhost:3000/event/" + id + "/gifts?key=" + grsId;
+        const link = "http://localhost:3000/event/" + id + "/public?key=" + grsId;
+        //console.log(link);
         alert(link);
     }
 
     return (
+
         <div>
             <button type="button" className="btn-2" onClick={addEvent}><IoIosAdd /> Add new event</button>
             <table>
@@ -78,16 +77,15 @@ const ListEventComponent = () => {
                                 <td>{event.eventDescription}</td>
                                 <td>{event.eventType}</td>
                                 <td>
-                                    <button className="btn-1" onClick={() => viewGifts(event.eventId)}><GoGift /> View Gifts</button>
+                                    <button className="btn-1" onClick={() => viewGifts(event.eventId)}><GoGift /> View Wishlist</button>
                                     <button className="btn-1" onClick={() => shareLink(event.eventId)}><CiLink /> Share Link</button>
-                                    <button className="btn-1" onClick={() => updateEvent(event.eventId)}><CiEdit /> Update</button>
+                                    <button className="btn-1" onClick={() => updateEvent(event.eventId)}><CiEdit /> Edit</button>
                                     <button className="btn-1" onClick={() => removeEvent(event.eventId)}><MdDeleteOutline /> Delete</button>
                                 </td>
                             </tr>)
                     }
                 </tbody>
             </table>
-
             <button type="button" className="btn-2" onClick={redirect}><IoArrowBack /> Back to Home page</button>
         </div>
     )
